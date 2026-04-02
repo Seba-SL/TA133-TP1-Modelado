@@ -73,6 +73,38 @@ citestyle=apa
  
  El primer modelo se centra en una masa sostenida a dos puntos fijos sin movimiento, el superior por medio de un resorte e inferior por medio de un amortiguador.
  
+ \subsubsection{Enunciado}
+ 
+ Considere el sistema masa--resorte con fricción mostrado en la Figura \ref{fig:masaresorte1gradolib}. 
+ Se pide:
+ 
+Resolución analítica
+ 
+ \begin{enumerate}
+ 	\item Obtener una descripción del sistema en \textbf{espacio de estados}.
+ 	
+ 	\item Obtener la \textbf{función de transferencia} del sistema de dos maneras:
+ 	\begin{enumerate}
+ 		\item Aplicando la transformada de Laplace a la ecuación diferencial que describe la dinámica del sistema.
+ 		\item A partir de la descripción en espacio de estados, es decir, utilizando las matrices $A$, $B$, $C$ y $D$ para obtener la función de transferencia.
+ 	\end{enumerate}
+ 	Verificar que ambos resultados coincidan.
+ 	
+ 	\item Obtener analíticamente la \textbf{respuesta al escalón} desde la entrada $u$ hasta la salida $y$, utilizando la transformada de Laplace.
+ 	
+ 	\item Obtener la \textbf{respuesta a condiciones iniciales} en posición y velocidad mediante la exponencial matricial. 
+ 	La exponencial matricial puede calcularse utilizando la transformada de Laplace u otro método equivalente.
+ \end{enumerate}
+
+Verificación mediante MATLAB/SCILAB
+ 
+ \begin{enumerate}
+ 	\item Verificar los resultados obtenidos utilizando los comandos \texttt{ss} y \texttt{tf}/\texttt{zpk}. 
+ 	Verificar también la exponencial matricial utilizando el \textit{Symbolic Toolbox} y la función \texttt{ilaplace}.
+ 	
+ 	\item Obtener las respuestas al \textbf{impulso} y al \textbf{escalón} mediante \textit{Simulink/Xcos} y también utilizando el \textit{Control Toolbox} de MATLAB/SCILAB, demostrando el uso de los comandos \texttt{step}, \texttt{initial} e \texttt{impulse}.
+ \end{enumerate}
+ 
 \begin{figure}[H]
 	\centering
 	
@@ -130,7 +162,7 @@ Debido que en equilibrio la propia sumatoria, al cumplirse (\ref{equation:equili
 	\sum F = m\cdot g -k \cdot (y(t) =  0) = m \frac{d^2 y}{dt^2 } = 0 
 	\end{equation}
 
-Por lo tanto $mg = 0$ y se llega a la siguiente expresión.
+Por lo tanto $mg = 0$ siendo constante y se llega a la siguiente expresión.
 
  \begin{equation}\label{equation:sumatoriadeFuerzas_inicial_conmg0}
 	\sum F = - F_k - F_b + F_u = m \frac{d^2 y}{dt^2 }
@@ -142,6 +174,144 @@ Por lo tanto $mg = 0$ y se llega a la siguiente expresión.
 	 F_u = m \frac{d^2 y}{dt^2 } + F_k + F_b 
 \end{equation}
 
+Finalmente se llega a la ecuación diferencial caracteristica del sistema, de orden $2^{do}$ (\ref{equation:sumatoriadeFuerzas_inicial_conmg0_3}).
+\begin{equation}\label{equation:sumatoriadeFuerzas_inicial_conmg0_3}
+	u(t) = m \frac{d^2 y}{dt^2 } + k \cdot y(t) + b \cdot \frac{dy(t)}{dt}
+\end{equation}
+
+
+Con dicha expresión podemos comenzar a resolver el primer item, obteniendo una descripción del sistema en \textbf{espacio de estados}.
+
+El \textbf{estado} de un sistema dinámico es el conjunto más pequeño de variables 
+(denominadas \textit{variables de estado}) tal que el conocimiento de dichas variables 
+en un instante $t = t_0$, junto con el conocimiento de la entrada para todo 
+$t \geq t_0$, determina completamente el comportamiento del sistema para 
+cualquier $t \geq t_0$. Las variables de un sistema dinámico son las variables que constituyen el menor conjunto de variables que determinan el estado del sistema dinámico.Si se necesitan n variables de estado para describir completamente el comportamiento de un sistema dado, entonces esas n variables de estado se pueden considerar como las n componentes de un vector, conocido como vector de estados.
+
+El espacio $n$-dimensional cuyos ejes de coordenadas están formados por 
+$x_1, x_2, \ldots, x_n$, donde $x_1, x_2, \ldots, x_n$ son las variables de 
+estado, se denomina \textbf{espacio de estados}. 
+
+Cualquier estado del sistema puede representarse como un punto en dicho 
+espacio de estados.
+
+Los sistemas dinámicos deben contener elementos que ``recuerden'' los valores 
+de la entrada para $t \geq t_1$. En sistemas de control en tiempo continuo, 
+los integradores actúan como dispositivos de memoria. Por lo tanto, las salidas 
+de dichos integradores pueden considerarse como las variables que describen el 
+estado interno del sistema dinámico. Así, las salidas de los integradores sirven 
+como \textit{variables de estado}.
+
+El número de variables de estado necesarias para describir completamente la 
+dinámica del sistema es igual al número de integradores presentes en el mismo.
+
+Considérese un sistema de múltiples entradas y múltiples salidas con $n$ 
+integradores. Supóngase además que existen $r$ entradas 
+$u_1(t), u_2(t), \ldots, u_r(t)$ y $m$ salidas 
+$y_1(t), y_2(t), \ldots, y_m(t)$. Se definen las $n$ salidas de los integradores 
+como variables de estado:
+
+\[
+x_1(t), x_2(t), \ldots, x_n(t)
+\]
+
+Entonces el sistema puede describirse mediante
+
+\begin{align}
+	\dot{x}_1(t) &= f_1(x_1,x_2,\ldots,x_n;\,u_1,u_2,\ldots,u_r;\,t) \\
+	\dot{x}_2(t) &= f_2(x_1,x_2,\ldots,x_n;\,u_1,u_2,\ldots,u_r;\,t) \\
+	&\vdots \\
+	\dot{x}_n(t) &= f_n(x_1,x_2,\ldots,x_n;\,u_1,u_2,\ldots,u_r;\,t)
+\end{align}
+
+Las salidas del sistema se obtienen mediante
+
+\begin{align}
+	y_1(t) &= g_1(x_1,x_2,\ldots,x_n;\,u_1,u_2,\ldots,u_r;\,t) \\
+	y_2(t) &= g_2(x_1,x_2,\ldots,x_n;\,u_1,u_2,\ldots,u_r;\,t) \\
+	&\vdots \\
+	y_m(t) &= g_m(x_1,x_2,\ldots,x_n;\,u_1,u_2,\ldots,u_r;\,t)
+\end{align}
+
+
+Dado este sistema defino como variables de estado la distancia de la masa y la velocidad de esta (\ref{equation:variablesdeestado_1_1}):
+
+
+\begin{equation}\label{equation:variablesdeestado_1_1}
+	x_1(t) = y(t) \quad \wedge \quad x_2(t) = \frac{dy(t)}{dt} = \dot{y}
+\end{equation}
+
+
+Las cuales cumplen $ x_2(t) = \dot{X_1(t)} $ y $\dot{x_2} = \frac{u(t) }{m} - \frac{b x_2}{m} - \frac{k x_1}{m}$
+
+
+
+y de acuerdo a lo extraído del libro, necesito expresar el vector :
+
+\begin{equation}
+	\begin{bmatrix}
+		\dot{x}_1(t) \\
+		\dot{x}_2(t)
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		0 & 1 \\
+		-\dfrac{k}{m} & -\dfrac{b}{m}
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1(t) \\
+		x_2(t)
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		0 \\
+		\dfrac{1}{m}
+	\end{bmatrix}
+	u(t)
+\end{equation}
+
+y la salida del sistema:
+
+\begin{equation}
+	y =
+	\begin{bmatrix}
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\
+		x_2
+	\end{bmatrix}
+\end{equation}
+
+
+Dando así las matrices que caracterizan el sistema A: Matriz de estado, B: Matriz de entrada, C : Matriz de salida, D : Matriz de transmisión directa.
+
+\begin{equation}
+	\begin{aligned}
+		\dot{x} &= 
+		\underbrace{
+			\begin{bmatrix}
+				0 & 1 \\
+				-\dfrac{k}{m} & -\dfrac{b}{m}
+		\end{bmatrix}}_{A}
+		x
+		+
+		\underbrace{
+			\begin{bmatrix}
+				0 \\
+				\dfrac{1}{m}
+		\end{bmatrix}}_{B}
+		u \\[6pt]
+		y &=
+		\underbrace{
+			\begin{bmatrix}
+				1 & 0
+		\end{bmatrix}}_{C}
+		x
+		+
+		\underbrace{0}_{D}u
+	\end{aligned}
+\end{equation}
 
  \subsection{Dos grados de libertad}
  
