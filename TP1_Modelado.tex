@@ -457,6 +457,40 @@ Multiplicando numerador y denominador por \(m\):
 	H(s)=\frac{1}{ms^2+bs+k}
 \end{equation}
 
+Se verifica la misma transferencia.
+
+Para el item c), se pide la respuesta al escalón, se puede obtener por la transformadas de laplace.
+
+\begin{equation}
+	Y(s) = H(s) \cdot U(s)
+\end{equation}
+
+Siendo $U(s) = \frac{1}{s} $ la transferencia del escalón : u(t).
+
+
+\begin{equation}
+	Y(s) = \frac{1}{s^2+\frac{b}{m}s+\frac{k}{m}} \cdot\frac{1}{s}
+\end{equation}
+
+
+Se procede a antitransformar utilizando:
+
+\begin{equation}
+	Y(s) = \frac{1}{s^2+\frac{b}{m}s+\frac{k}{m}} \cdot\frac{1}{s} = \frac{As + B}{s^2+\frac{b}{m}s+\frac{k}{m}} + \frac{C}{s}
+\end{equation}
+
+Despejando:
+
+\begin{equation}
+	(A+ Cm ) s^2 = 0 --> A =-1 \quad \wedge \quad (B + Cb )s = 0 --> B = -1 \quad \wedge \quad kC = 1 --> C = 1 
+\end{equation}
+
+
+\begin{equation}
+	Y(s) =  \frac{-s -1 }{s^2+\frac{b}{m}s+\frac{k}{m}} + \frac{1}{s}
+\end{equation}
+
+
  \subsection{Dos grados de libertad}
  
  
