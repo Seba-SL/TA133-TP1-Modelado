@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.1.2)  2 APR 2026 13:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.1.2)  2 APR 2026 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1114,23 +1114,23 @@ Package pdftex.def Info: img/masa_resorte_1grado_Lib.png  used on input line 11
 File: img/masas_resorte_2grados_Lib.png Graphic file (type png)
 <use img/masas_resorte_2grados_Lib.png>
 Package pdftex.def Info: img/masas_resorte_2grados_Lib.png  used on input line 
-499.
+506.
 (pdftex.def)             Requested size: 256.07481pt x 78.49583pt.
 <img/redRLC.png, id=46, 587.94656pt x 229.60782pt>
 File: img/redRLC.png Graphic file (type png)
 <use img/redRLC.png>
-Package pdftex.def Info: img/redRLC.png  used on input line 509.
+Package pdftex.def Info: img/redRLC.png  used on input line 516.
 (pdftex.def)             Requested size: 256.07481pt x 100.00471pt.
 <img/motor.png, id=47, 423.08063pt x 270.25969pt>
 File: img/motor.png Graphic file (type png)
 <use img/motor.png>
-Package pdftex.def Info: img/motor.png  used on input line 519.
+Package pdftex.def Info: img/motor.png  used on input line 526.
 (pdftex.def)             Requested size: 256.07481pt x 163.5839pt.
  [6 <./img/masas_resorte_2grados_Lib.png> <./img/redRLC.png>]
 <img/tanques_acoplados.png, id=53, 420.06938pt x 234.1247pt>
 File: img/tanques_acoplados.png Graphic file (type png)
 <use img/tanques_acoplados.png>
-Package pdftex.def Info: img/tanques_acoplados.png  used on input line 531.
+Package pdftex.def Info: img/tanques_acoplados.png  used on input line 538.
 (pdftex.def)             Requested size: 256.07481pt x 142.72296pt.
  [7 <./img/motor.png> <./img/tanques_acoplados.png>]
 (./TP1_Modelado.aux
@@ -1167,7 +1167,7 @@ e/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/
 public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share
 /texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on TP1_Modelado.pdf (7 pages, 394272 bytes).
+Output written on TP1_Modelado.pdf (7 pages, 396118 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream
