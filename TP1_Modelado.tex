@@ -175,6 +175,7 @@ Por lo tanto $mg = 0$ siendo constante y se llega a la siguiente expresión.
 \end{equation}
 
 Finalmente se llega a la ecuación diferencial caracteristica del sistema, de orden $2^{do}$ (\ref{equation:sumatoriadeFuerzas_inicial_conmg0_3}).
+
 \begin{equation}\label{equation:sumatoriadeFuerzas_inicial_conmg0_3}
 	u(t) = m \frac{d^2 y}{dt^2 } + k \cdot y(t) + b \cdot \frac{dy(t)}{dt}
 \end{equation}
@@ -312,6 +313,39 @@ Dando así las matrices que caracterizan el sistema A: Matriz de estado, B: Matr
 		\underbrace{0}_{D}u
 	\end{aligned}
 \end{equation}
+
+Con expresar los vectores de estado, su derivada y salida, ya se a respondido el punto a).
+
+Para el punto b) se requiere obtener la transferencia, aplicando Laplace a la ecuación diferencial de la dinámica por un lado y a partir de la descripción en espacio de estados por el otro, es decir pasando de las matrices A,B,C,D a la transferencia. Verificar que den igual.
+
+Primero partiendo de la ecuación diferencial (\ref{equation:deriv_laplace}).
+
+\begin{equation}\label{equation:ecDif_hallar_H}
+	u(t) = m \frac{d^2 y}{dt^2 } + k \cdot y(t) + b \cdot \frac{dy(t)}{dt}
+\end{equation}
+
+
+Aplicando la transformada de Laplace, recordando la propiedad ():
+
+\begin{equation}\label{equation:deriv_laplace}
+	\mathcal{L}\left\{\frac{d}{dt}f(t)\right\} = sF(s) - f(0)
+\end{equation}
+
+
+\begin{equation}\label{equation:ecDif_hallar_H_2}
+	U(s) = m \cdot s^2 \cdot Y(s) + b \cdot s \cdot Y(s) + k \cdot Y(s)
+\end{equation}
+
+Obteniendo:
+
+
+\begin{equation}\label{equation:ecDif_hallar_H_3}
+	H(s) = \frac{Y(s)}{U(s)} = \frac{1}{m s^2 + b s + k}
+\end{equation}
+
+
+Ahora el enunciado pide obtener la transferencia partiendo de las matrices A,B,C y D.
+
 
  \subsection{Dos grados de libertad}
  
