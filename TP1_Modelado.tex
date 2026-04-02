@@ -498,6 +498,32 @@ Antitransformando se llega a :
 	y(t) = - e^{-t/2} \left(cos\left(\frac{\sqrt{3}}{2} t \right) + \frac{1}{\sqrt{3}}  sen\left(\frac{1}{\sqrt(3) }{2} t \right) \right)
 \end{equation}
 
+
+En el punto d) pide obtener la respuesta a condiciones iniciales en posición y velocidad por medio de la exponencial
+matricial (esta última se puede calcular a través de la transformada de Laplace, u otro método).
+
+
+La exponencial matricial:
+
+\begin{equation}
+	e^{At}
+\end{equation}
+
+Que se obtiene de :
+
+
+\begin{equation}\label{equation:deriv_laplace}
+	\mathcal{L}\left\{ e^{At}\right\} =(sI - A )^{-1}
+\end{equation}
+
+
+\begin{equation}\label{equation:deriv_laplace}
+	\mathcal{L}\left\{ e^{At}\right\} =\frac{1}{s^2 + s\frac{b}{m} +\frac{k}{m}    }
+\end{equation}
+
+
+Antitransformando, se llega a la misma expresión.
+
  \subsection{Dos grados de libertad}
  
  
@@ -507,6 +533,8 @@ Antitransformando se llega a :
  	\caption{}
  	\label{fig:masasresorte2gradoslib}
  \end{figure}
+
+
  
  
  \section{Red RLC de tercer orden}
