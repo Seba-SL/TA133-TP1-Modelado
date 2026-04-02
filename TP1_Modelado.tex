@@ -345,7 +345,117 @@ Obteniendo:
 
 
 Ahora el enunciado pide obtener la transferencia partiendo de las matrices A,B,C y D.
+Por teoría sabemos que se obtiene de la siguiente expresión: 
 
+\begin{equation}
+	H(s) = C(sI - A)^{-1}B + D
+\end{equation}
+
+
+Partiendo de la relación entre la función de transferencia y la
+representación en espacio de estados:
+
+
+Para el sistema masa–resorte–amortiguador se tiene:
+
+\begin{equation}
+	A=
+	\begin{bmatrix}
+		0 & 1\\
+		-\frac{k}{m} & -\frac{b}{m}
+	\end{bmatrix},
+	\quad
+	B=
+	\begin{bmatrix}
+		0\\
+		\frac{1}{m}
+	\end{bmatrix},
+	\quad
+	C=
+	\begin{bmatrix}
+		1 & 0
+	\end{bmatrix},
+	\quad
+	D=0
+\end{equation}
+
+Primero se calcula la matriz \(sI-A\):
+
+\begin{equation}
+	sI-A =
+	\begin{bmatrix}
+		s & 0\\
+		0 & s
+	\end{bmatrix}
+	-
+	\begin{bmatrix}
+		0 & 1\\
+		-\frac{k}{m} & -\frac{b}{m}
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		s & -1\\
+		\frac{k}{m} & s+\frac{b}{m}
+	\end{bmatrix}
+\end{equation}
+
+Luego se calcula su inversa:
+
+\begin{equation}
+	(sI-A)^{-1} =
+	\frac{1}{s\left(s+\frac{b}{m}\right)+\frac{k}{m}}
+	\begin{bmatrix}
+		s+\frac{b}{m} & 1\\
+		-\frac{k}{m} & s
+	\end{bmatrix}
+\end{equation}
+
+Multiplicando por \(B\):
+
+\begin{equation}
+	(sI-A)^{-1}B =
+	\frac{1}{s\left(s+\frac{b}{m}\right)+\frac{k}{m}}
+	\begin{bmatrix}
+		s+\frac{b}{m} & 1\\
+		-\frac{k}{m} & s
+	\end{bmatrix}
+	\begin{bmatrix}
+		0\\
+		\frac{1}{m}
+	\end{bmatrix}
+	=
+	\frac{1}{s\left(s+\frac{b}{m}\right)+\frac{k}{m}}
+	\begin{bmatrix}
+		\frac{1}{m}\\
+		\frac{s}{m}
+	\end{bmatrix}
+\end{equation}
+
+Finalmente, multiplicando por \(C\):
+
+\begin{equation}
+	H(s)=
+	\begin{bmatrix}
+		1 & 0
+	\end{bmatrix}
+	\frac{1}{s\left(s+\frac{b}{m}\right)+\frac{k}{m}}
+	\begin{bmatrix}
+		\frac{1}{m}\\
+		\frac{s}{m}
+	\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+	H(s)=
+	\frac{1}{m}
+	\frac{1}{s^2+\frac{b}{m}s+\frac{k}{m}}
+\end{equation}
+
+Multiplicando numerador y denominador por \(m\):
+
+\begin{equation}
+	H(s)=\frac{1}{ms^2+bs+k}
+\end{equation}
 
  \subsection{Dos grados de libertad}
  
