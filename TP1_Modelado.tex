@@ -67,17 +67,70 @@ citestyle=apa
  
  \section{Masa-Resorte-Fricción}
  
+ Se modelan un sistemas mecanicos traslaciónales con elementos concentrados que ejercen fuerzas, resistencias, acumulan y descargan energía mecánica. 
+ 
  \subsection{Un grado de libertad}
  
- \begin{figure}[H]
- 	\centering
- 	\includegraphics[width=0.15\linewidth]{img/masa_resorte_1grado_Lib}
- 	\caption{}
- 	\label{fig:masaresorte1gradolib}
- \end{figure}
+ El primer modelo se centra en una masa sostenida a dos puntos fijos sin movimiento, el superior por medio de un resorte e inferior por medio de un amortiguador.
  
- 
- 
+\begin{figure}[H]
+	\centering
+	
+	\begin{minipage}{0.25\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{img/masa_resorte_1grado_Lib}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.65\textwidth}
+		
+		Planteando el diagrama de cuerpo libre de la masa, tomando como referencia el punto de equilibrio donde se cumple (\ref{equation:equilibrio_1.1}) : 
+		
+		\begin{equation}\label{equation:equilibrio_1.1}
+			u(t) = 0 , y(t) = y_{eq} = 0 , \frac{d^2 y}{dt^2 } = \frac{dy}{dt} = 0
+		\end{equation}
+	
+	    Se plantea la sumatoria de fuerzas en m obteniendo (\ref{equation:sumatoriadeFuerzas_inicial}):
+	    
+	    \begin{equation}\label{equation:sumatoriadeFuerzas_inicial}
+	    	\sum F = F_ g - F_k - F_b + F_u = m \frac{d^2 y}{dt^2 }
+	    \end{equation}
+		 
+		\centering
+		\small
+		\begin{tabular}{ll}
+			\toprule
+			Constante & Descripción \\
+			\midrule
+			$m  = 1 kg$ & Masa \\
+			$k = 1 N/m $ & Constante del resorte \\
+			$b =  1 N/ms$ & Fricción viscosa \\
+			$u(t) , N$ & Fuerza aplicada \\
+			$y(t) , m$ & Desplazamiento \\
+			\bottomrule
+			
+		
+		\end{tabular}
+	\end{minipage}
+	
+	\caption{Sistema masa–resorte–amortiguador y parámetros del modelo}
+	\label{fig:masaresorte1gradolib}
+	
+\end{figure}
+
+Cada fuerza cumple la relación:
+
+\begin{equation}
+	F_g = m\cdot g  ; F_k = k \cdot y(t) ;  F_b = b \cdot \frac{dy}{dt} ; F_u = u(t) 
+\end{equation}
+
+
+Debido que en equilibrio la propia sumatoria, al cumplirse (\ref{equation:equilibrio_1.1}) se obtiene:
+
+   \begin{equation}\label{equation:sumatoriadeFuerzas_inicial}
+	\sum F = m\cdot g -k \cdot y(t) = m \frac{d^2 y}{dt^2 } = 0 
+\end{equation}
+
+
  \subsection{Dos grados de libertad}
  
  
