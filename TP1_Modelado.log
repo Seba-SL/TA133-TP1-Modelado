@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.1.2)  4 APR 2026 10:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2026.1.2)  4 APR 2026 10:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1169,23 +1169,23 @@ uesta_escalon_1_1.png  used on input line 606.
 (pdftex.def)             Requested size: 512.14963pt x 219.7119pt.
  [7 <./img/Esquema_libro_1_1.png> <./img/diagramadeBloquesXcos1_1.png>]
 <1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_impulso_1_1.png, id=59, 
-1137.24875pt x 564.1075pt>
+1371.1225pt x 588.1975pt>
 File: 1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_impulso_1_1.png Gra
 phic file (type png)
 <use 1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_impulso_1_1.png>
 Package pdftex.def Info: 1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_
-impulso_1_1.png  used on input line 614.
-(pdftex.def)             Requested size: 460.93153pt x 228.63443pt.
+impulso_1_1.png  used on input line 615.
+(pdftex.def)             Requested size: 512.14963pt x 219.7119pt.
 <img/masas_resorte_2grados_Lib.png, id=60, 599.23875pt x 183.68625pt>
 File: img/masas_resorte_2grados_Lib.png Graphic file (type png)
 <use img/masas_resorte_2grados_Lib.png>
 Package pdftex.def Info: img/masas_resorte_2grados_Lib.png  used on input line 
-624.
+625.
 (pdftex.def)             Requested size: 256.07481pt x 78.49583pt.
 <img/redRLC.png, id=61, 587.94656pt x 229.60782pt>
 File: img/redRLC.png Graphic file (type png)
 <use img/redRLC.png>
-Package pdftex.def Info: img/redRLC.png  used on input line 636.
+Package pdftex.def Info: img/redRLC.png  used on input line 637.
 (pdftex.def)             Requested size: 256.07481pt x 100.00471pt.
  [8 <./1) Masa-Resorte-Friccion/1_1 Un grado de libertad/respuesta_escalon_1_1.
 png> <./1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_impulso_1_1.png> 
@@ -1193,12 +1193,12 @@ png> <./1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_impulso_1_1.png>
 <img/motor.png, id=68, 423.08063pt x 270.25969pt>
 File: img/motor.png Graphic file (type png)
 <use img/motor.png>
-Package pdftex.def Info: img/motor.png  used on input line 646.
+Package pdftex.def Info: img/motor.png  used on input line 647.
 (pdftex.def)             Requested size: 256.07481pt x 163.5839pt.
 <img/tanques_acoplados.png, id=69, 420.06938pt x 234.1247pt>
 File: img/tanques_acoplados.png Graphic file (type png)
 <use img/tanques_acoplados.png>
-Package pdftex.def Info: img/tanques_acoplados.png  used on input line 658.
+Package pdftex.def Info: img/tanques_acoplados.png  used on input line 659.
 (pdftex.def)             Requested size: 256.07481pt x 142.72296pt.
  [9 <./img/redRLC.png> <./img/motor.png> <./img/tanques_acoplados.png>] (./TP1_
 Modelado.aux
@@ -1240,7 +1240,7 @@ public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 /texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sftt0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1
 000.pfb>
-Output written on TP1_Modelado.pdf (9 pages, 528675 bytes).
+Output written on TP1_Modelado.pdf (9 pages, 538610 bytes).
 PDF statistics:
  164 PDF objects out of 1000 (max. 8388607)
  90 compressed objects within 1 object stream
