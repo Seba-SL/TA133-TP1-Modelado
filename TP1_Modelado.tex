@@ -16,6 +16,18 @@
 \usepackage[T1]{fontenc}
 \usepackage{amssymb}
 \usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+	language=Matlab,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	numbers=left,
+	numberstyle=\tiny,
+	frame=single
+}
 
 \addto\captionsspanish{
 	\renewcommand{\tablename}{Tabla}
@@ -523,6 +535,86 @@ Que se obtiene de :
 
 
 Antitransformando, se llega a la misma expresión.
+
+
+\subsubsection{Simulación}
+
+Mediante el software Scilab se simula y verifica que la transferencia del sistema es la hallada analíticamente.
+
+\begin{lstlisting}[caption=Verificación del sistema en Scilab]
+	m = 1;
+	b = 1;
+	k = 1;
+	
+	A = [0 1 ; -k/m -b/m];
+	B = [0 ; 1/m];
+	C = [1 0];
+	D = 0;
+	
+	sys = syslin('c',A,B,C,D);
+	H = ss2tf(sys);
+	
+	
+\end{lstlisting}
+
+
+
+
+
+
+\begin{lstlisting}[caption=Verificación del sistema en Scilab]
+--> exec('/home/sebastian/FIUBA-2do Cuatrimestre
+/Control Automatico TA133/TP1_Modelado/1) Masa-Resorte-Friccion
+
+/1_1 Un grado de libertad/1_1.sci', -1)
+[state-space]
+A (matrix) = [0,1;-1,-1]
+B (matrix) = [0;1]
+C (matrix) = [1,0]
+D (matrix) = 0
+X0 (initial state) = [0;0]
+dt (time domain) = "c"
+1      
+---------  
+1 +s +s^2  ;
+	
+	
+\end{lstlisting}
+
+Se puede comprobar que el sistema que se quiere simular es el que se muestra en la figura \ref{fig:esquemalibro11}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{img/Esquema_libro_1_1}
+	\caption{}
+	\label{fig:esquemalibro11}
+\end{figure}
+
+Mediante Scilab/Xcos se simula utilizando el diagrama de bloques de la figura \ref{fig:diagramadebloquesxcos11}, para las entradas escalón y impulso.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{img/diagramadeBloquesXcos1_1}
+	\caption{}
+	\label{fig:diagramadebloquesxcos11}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{"1) Masa-Resorte-Friccion/1_1 Un grado de libertad/respuesta_escalon_1_1"}
+	\caption{}
+	\label{fig:respuestaescalon11}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"1) Masa-Resorte-Friccion/1_1 Un grado de libertad/rta_impulso_1_1"}
+	\caption{}
+	\label{fig:rtaimpulso11}
+\end{figure}
 
  \subsection{Dos grados de libertad}
  
