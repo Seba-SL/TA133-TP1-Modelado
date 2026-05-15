@@ -600,6 +600,26 @@ Mediante Scilab/Xcos se simula utilizando el diagrama de bloques de la figura \r
 \end{figure}
 
 
+\subsubsection{Scilab: Control Toolback}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{"1) Masa-Resorte-Friccion/1_1 Un grado de libertad/respuesta_escalon_1_1_sim_numerico"}
+	\caption{}
+	\label{fig:respuestaescalon11simnumerico}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{"1) Masa-Resorte-Friccion/1_1 Un grado de libertad/respuesta_impulso_1_1_sim_numerico"}
+	\caption{}
+	\label{fig:respuestaimpulso11simnumerico}
+\end{figure}
+
+
+\subsubsection{Xcos}
 
 \begin{figure}[H]
 	\centering
@@ -619,6 +639,7 @@ Mediante Scilab/Xcos se simula utilizando el diagrama de bloques de la figura \r
 
  \subsection{Dos grados de libertad}
  
+ Sistema mecánico de dos masas unidas por un resorte, la primera fijada a la pared por medio de un amortiguador de coeficiente de fricción D y la segunda sometida a una fuerza externa.
  
  \begin{figure}[H]
  	\centering
@@ -628,8 +649,359 @@ Mediante Scilab/Xcos se simula utilizando el diagrama de bloques de la figura \r
  \end{figure}
 
 
+Cambio las variables de posición del esquema por $x_1 = y_1 $ y $ x_2 = y_2$ para poder utilizar x en las variables de estado. Luego defino la fuerza externa como $f(t) = u(t)$ y planteo la sumatoria de fuerzas (\ref{equation:sum_fuerzas_1_2}):
+
+ \begin{equation}\label{equation:sum_fuerzas_1_2}
+ 	\sum_i F = F_k - F_D = M_1 \frac{\delta^2 y_1 }{\delta t^2} \quad \wedge \quad \sum_{ii} F = u(t) - F_k  = M_1 \frac{\delta^2 y_2 }{\delta t^2} 
+ \end{equation}
+
+Reescribiendo con la notación de punto y las expresiones de las fuerzas.
+
+ \begin{equation}\label{equation:sum_fuerzas_1_2_conpuntos}
+	\sum_i F = k(y_2 - y_1) - D \cdot \dot{y_1} = M_1\ddot{y_1} \quad \wedge \quad \sum_{ii} F = u(t) - k(y_2 - y_1)  =M_2 \ddot{y_2}
+\end{equation}
+
+Uniendo las expresiones:
+
+ \begin{equation}\label{equation:sum_fuerzas_1_2_conpuntos}
+	 M_1\ddot{y_1} +  D \cdot \dot{y_1} = u(t) - M_2 \cdot \ddot{y_2}
+\end{equation}
+
+\paragraph{a)Obtener una descripción en espacio de estados:}
+
+Defino las variables de estado:
+
+\begin{align}
+	x_1 &= y_1(t) \\
+	x_2 &= \dot{y}_1(t) \\
+	x_3 &= y_2(t) \\
+	x_4 &= \dot{y}_2(t)
+\end{align}
  
  
+ Formo las descripciones del sistema:
+ 
+ \begin{equation}
+ 	(x_1 - x_3)\cdot K - D \cdot x_2 = M_1 \cdot \dot{x_2} 
+ \end{equation}
+
+ \begin{equation}
+	u(t) - (x_1 - x_3)\cdot K  = M_2 \cdot \dot{x_4} 
+\end{equation}
+
+
+\begin{equation}
+	\begin{bmatrix}
+		\dot{x}_1(t) \\
+		\dot{x}_2(t) \\
+		\dot{x}_3(t) \\
+		\dot{x}_4(t)
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		0 & 1 & 0 & 0\\
+		\dfrac{k}{M_1} & -\dfrac{D}{M_1} & \dfrac{-k}{M_1} & 0 \\
+		0 & 0 & 0 & 1 \\ 
+		\dfrac{k}{M_1} & 0 & \dfrac{-k}{M_2} & 0 
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1(t) \\
+		x_2(t) \\
+		x_3(t) \\
+		x_4(t)
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		0 \\
+		0 \\
+		0 \\
+		\dfrac{1}{M_2}
+	\end{bmatrix}
+	u(t)
+\end{equation}
+
+
+Salida : 
+
+
+
+
+\begin{equation}
+	\begin{bmatrix}
+		x_1(t) \\
+		x_3(t) \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		1 & 0 & 0 & 0\\
+		0 & 0 &1 & 0 \\ 
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1(t) \\
+		x_2(t) \\
+		x_3(t) \\
+		x_4(t)
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		0 \\
+		0 \\
+	\end{bmatrix}
+	u(t)
+\end{equation}
+
+\paragraph{b) Obtener la transferencia, aplicando Laplace a la ecuación diferencial de la dinámcia por un lado
+	y a partir de la descripción en espacio de estados por el otro, es decir pasando de las matrices
+	A,B,C,D a la transferencia. Verificar que den igual : }
+
+Si 
+
+\begin{equation}
+	\begin{bmatrix}
+		y_1(t) \\
+		y_2(t) \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		x_1(t)\\
+		x_3(t) \\ 
+	\end{bmatrix}
+\end{equation}
+
+\paragraph{$b_1$ Aplicando Laplace a la ecuación diferencial:}
+
+
+\begin{equation}
+	Y_1(s) [ K - sD - M_1 s^2] - Y_2(s) K = 0
+\end{equation}
+
+\begin{equation}
+	Y_2(s) [M_2 s^2 - K  ] + Y_1(s) K = U(s) 
+\end{equation}
+
+\[
+\begin{bmatrix}
+	K-Ds-M_1s^2 & -K \\
+	K & -K+M_2s^2
+\end{bmatrix}
+\begin{bmatrix}
+	Y_1(s)\\
+	Y_2(s)
+\end{bmatrix}
+=
+\begin{bmatrix}
+	0\\
+	U(s)
+\end{bmatrix}
+\]
+
+
+\[
+\frac{Y_1(s)}{U(s)}
+=
+\frac{K}{
+	M_1M_2s^4
+	+DM_2s^3
+	+K(M_1+M_2)s^2
+	+DKs
+}
+\]
+
+
+
+\[
+\frac{Y_2(s)}{U(s)}
+=
+\frac{M_1s^2+Ds+K}{
+	M_1M_2s^4
+	+DM_2s^3
+	+K(M_1+M_2)s^2
+	+DKs
+}
+\]
+
+\paragraph{$b_2$ Transformando matrices de espacio de estados:}
+
+Partiendo de la expresión de la función de transferencia en espacio de estados:
+
+\[
+H(s)=C(sI-A)^{-1}B+D
+\]
+
+
+y las matrices del sistema son:
+
+\[
+A=
+\begin{bmatrix}
+	0 & 1 & 0 & 0\\
+	-\dfrac{k}{m_1} & \dfrac{D}{m_1} & \dfrac{k}{m_1} & 0\\
+	0 & 0 & 0 & 1\\
+	\dfrac{k}{m_2} & 0 & -\dfrac{k}{m_2} & 0
+\end{bmatrix}
+\]
+
+\[
+B=
+\begin{bmatrix}
+	0\\
+	0\\
+	0\\
+	\dfrac{1}{m_2}
+\end{bmatrix}
+\]
+
+\[
+C=
+\begin{bmatrix}
+	1 & 0 & 0 & 0\\
+	0 & 0 & 1 & 0
+\end{bmatrix}
+\]
+
+\[
+D=
+\begin{bmatrix}
+	0\\
+	0
+\end{bmatrix}
+\]
+
+Primero se construye:
+
+\[
+sI-A
+\]
+
+Como \(I\) es la matriz identidad de orden \(4\):
+
+\[
+sI=
+\begin{bmatrix}
+	s & 0 & 0 & 0\\
+	0 & s & 0 & 0\\
+	0 & 0 & s & 0\\
+	0 & 0 & 0 & s
+\end{bmatrix}
+\]
+
+Entonces:
+
+\[
+sI-A=
+\begin{bmatrix}
+	s & -1 & 0 & 0\\
+	\dfrac{k}{m_1} & s-\dfrac{D}{m_1} & -\dfrac{k}{m_1} & 0\\
+	0 & 0 & s & -1\\
+	-\dfrac{k}{m_2} & 0 & \dfrac{k}{m_2} & s
+\end{bmatrix}
+\]
+
+Por lo tanto:
+
+\[
+H(s)=
+C
+\left(
+\begin{bmatrix}
+	s & -1 & 0 & 0\\
+	\dfrac{k}{m_1} & s-\dfrac{D}{m_1} & -\dfrac{k}{m_1} & 0\\
+	0 & 0 & s & -1\\
+	-\dfrac{k}{m_2} & 0 & \dfrac{k}{m_2} & s
+\end{bmatrix}
+\right)^{-1}
+B
+\]
+
+Como \(D=0\), el término directo desaparece.
+
+Luego, resolviendo la inversa y efectuando el producto matricial, se obtiene:
+
+\[
+H(s)=
+\begin{bmatrix}
+	\dfrac{k}{
+		m_1m_2 s^4
+		-Dm_2 s^3
+		+k(m_1+m_2)s^2
+		-Dks
+	}
+	\\[12pt]
+	\dfrac{m_1 s^2-Ds+k}{
+		m_1m_2 s^4
+		-Dm_2 s^3
+		+k(m_1+m_2)s^2
+		-Dks
+	}
+\end{bmatrix}
+\]
+
+Es decir:
+
+\[
+H(s)=
+\begin{bmatrix}
+	H_1(s)\\
+	H_2(s)
+\end{bmatrix}
+\]
+
+con:
+
+\[
+H_1(s)=
+\dfrac{k}{
+	m_1m_2 s^4
+	-Dm_2 s^3
+	+k(m_1+m_2)s^2
+	-Dks
+}
+\]
+
+\[
+H_2(s)=
+\dfrac{m_1 s^2-Ds+k}{
+	m_1m_2 s^4
+	-Dm_2 s^3
+	+k(m_1+m_2)s^2
+	-Dks
+}
+\]
+
+ y
+ 
+ 
+ \[
+ H_1(s)=
+ \dfrac{1}{
+ 	2 s^4
+ 	-  s^3
+ 	+3s^2
+ 	-\frac{1}{2} s
+ }
+ \]
+ 
+ \[
+ H_2(s)=
+ \dfrac{s^2-\frac{1}{2} s + 1 } {
+ 	2 s^4
+ 	-  s^3
+ 	+ 3s^2
+ 	- \frac{1 }{2}s
+ }
+ \]
+ 
+ 
+ \paragraph{c) Respuesta al escalón , analítica}
+ 
+ 
+ \begin{equation}
+ 	Y_1(s) = H_1(s) \cdot U(s)
+ \end{equation}
+
+\begin{equation}
+	Y_2(s) = H_2(s) \cdot U(s)
+\end{equation}
  \section{Red RLC de tercer orden}
  
  \begin{figure}[H]
@@ -638,6 +1010,121 @@ Mediante Scilab/Xcos se simula utilizando el diagrama de bloques de la figura \r
  	\caption{}
  	\label{fig:redrlc}
  \end{figure}
+
+Los elementos que almacenan energía son $C_1, C_2, \; y\; L1$, definirán las variables de estado.
+
+\begin{equation}
+	x_1 = v_{c1}  \quad ,  \;  x_2  = i_L(t) \quad , \; x_3 = v_{c2} \quad , \; u(t) = v_i(t)  
+\end{equation}
+ 
+ 
+ Se utilizan como variables de estado, las cuales son independientes del sistema y tienen memoria:
+ 
+ \begin{equation}
+ 	v_{c_1}(t) = \frac{1}{C} \int i_{c_1}(t) dt
+  \end{equation}
+
+ \begin{equation}
+	v_{c_2}(t) = \frac{1}{C} \int i_{c_2}(t) dt
+\end{equation}
+
+\begin{equation}
+	i_L(t) = \frac{1}{L} \int v_L (t) dt
+\end{equation}
+ 
+ 
+ Formando las mallas : 
+ 
+ \begin{equation}
+ 	1)  v_i( t ) - v_{c_1} (t) - v_L(t) = 0  
+ \end{equation}
+ \begin{equation}
+	2)  v_L(t) - v_R(t)  - v_{c_2}= 0  
+\end{equation}
+ 
+ Nodo:
+ \begin{equation}
+ 	i_{c_1} = C \frac{\delta v_c }{\delta t}  = i_R + i_L  \quad \wedge \quad i_R = 	i_{c_1} - i_L  = i_{c_2}
+ \end{equation}  
+ 
+ 
+ Utilizando las variables de estado:
+ 
+  \begin{equation}
+ 	1)  u( t ) - x_1 - L \cdot \dot{x}_2 = 0  
+ \end{equation}
+
+\begin{equation}
+	2)  L \cdot \dot{x}_2 - (C \cdot \dot{x}_3) R - x_3 = 0  
+\end{equation}
+
+ \begin{equation}
+	i_{c_1} = C \frac{\delta v_c }{\delta t}  = C \dot{x}_1 =  i_R + i_L = C \dot{x}_3  + x_2 \quad \wedge \quad i_R = 	i_{c_1} - i_L  = i_{c_2}
+\end{equation}
+
+
+Tomando la diferencia de tension entre los bornes de R para hallar su corriente se obtiene: 
+
+\begin{equation}
+	 C \dot{x}_1 = \frac{[u(t) - x_1 - x_3]}{R} + x_2 = i_R + i_L 
+\end{equation}
+
+\begin{equation}
+	 \dot{x}_1 = \frac{[u(t) - x_1 - x_3]}{RC} + \frac{x_2}{C} = i_R + i_L 
+\end{equation}
+
+
+Reemplazando $\dot{x}_2 = \frac{1}{L}u(t) - \frac{1}{L} x_1 $ en 2):
+
+$\dot{x}_3 = u(t) \frac{1}{RC} - x_1 \frac{1}{RC} - x_3\frac{1}{RC} $
+ 
+ \paragraph{Formación de matrices}
+ 
+\begin{equation}
+	\begin{bmatrix}
+		\dot{x}_1(t) \\
+		\dot{x}_2(t) \\
+		\dot{x}_3(t) 
+	\end{bmatrix}
+	=
+	\begin{bmatrix}	
+		\frac{-1}{RC_1} & \frac{1}{C_1} & \frac{-1}{RC_1} \\
+		\frac{-1}{L} & 0& 0\\
+		\frac{-1}{RC_2} & 0 & \frac{-1}{RC_2} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1(t) \\
+		x_2(t) \\
+		x_3(t) 
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		\frac{1}{RC_1} \\ 
+		0 \\
+		\frac{1}{RC_2}
+	\end{bmatrix}
+	u(t)
+\end{equation}
+
+ 
+ 
+ 
+ Utilizando $H(s) = C(s I  - A )^{-1} B + D $:
+ 
+ 
+ \begin{equation}
+ 	H(s)=\frac{V_o(s)}{V_i(s)}
+ 	=
+ 	\frac{1}{
+ 		LC_1C_2R\,s^3
+ 		+
+ 		L(C_1+C_2)s^2
+ 		+
+ 		C_2Rs
+ 		+
+ 		1
+ 	}
+ \end{equation}
  
  
  \section{Motor de continua }
